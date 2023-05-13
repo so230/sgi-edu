@@ -1,0 +1,7 @@
+{
+    "members":[
+        {"id":1, "name":"이호진","company":"EY"},
+        {"id":2, "name":"홍길동","company":"SGI 서울보증보험"},
+        {"id":2, "name":"춘향이","company":"EY"}
+    ]
+}
