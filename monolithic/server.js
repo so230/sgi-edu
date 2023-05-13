@@ -15,21 +15,33 @@ app.get('/', function(req, res) {
 // member page
 app.get('/member', function(req, res) {
     
-  const jsonFile = fs.readFileSync('./members.json', 'utf8');
-  const jsonData = JSON.parse(jsonFile);
+  const members = getMembers();
 
-  res.render('pages/member', {'members': jsonData.members});
+  res.render('pages/member', {'members': members});
 });
 
 // company page
 app.get('/company', function(req, res) {
     
-  const jsonFile = fs.readFileSync('./company.json', 'utf8');
-  const jsonData = JSON.parse(jsonFile);
+  const companys = getCompanys();
+  console.log(companys);
+  const members = getMembers();
 
-    res.render('pages/company', {'companys': jsonData.companys});
+  res.render('pages/company', {'companys': companys, 'members':members});
 });
 
+
+function getMembers(){  
+  const jsonFile = fs.readFileSync('./members.json', 'utf8');
+  const jsonData = JSON.parse(jsonFile);
+  return jsonData.members;
+}
+
+function getCompanys(){  
+  const jsonFile = fs.readFileSync('./company.json', 'utf8');
+  const jsonData = JSON.parse(jsonFile);
+  return jsonData.companys;
+}
   
 app.listen(8080);
 console.log('Server is listening on port 8080');

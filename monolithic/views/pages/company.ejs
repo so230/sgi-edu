@@ -30,13 +30,20 @@
   <div class="jumbotron">
    
     <% companys.forEach(function(company){%>
-        <li><%= company.name%></li>
+        <p><%= company.name%></p>
+        <ul>
+          
+    <% members.filter(member => member.company == company.name).forEach(function(member){%>
+      <li><%= member.name%></li>
+    <% }) %>
+        </ul>
+
     <% }) %>
 
 </main>
 
 <footer>
-    <p class="text-center text-muted">&copy; Copyright 2023 so230</p>
+  <p class="text-center text-muted">&copy; Copyright 2023 sso230@hotmail.com</p>
 </footer>
 
 </body>
