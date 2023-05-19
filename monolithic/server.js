@@ -18,12 +18,10 @@ app.get('/webhook/master/push', function(req,res){
       console.log(`error: ${error.message}`);
       return;
     }
-
     if(stderr){
       console.log(`stderr: ${stderr}`);
       return;
     }
-
     console.log(`stdout: ${stdout}`);
   })
   res.send("ci/cd를 실행합니다.");
