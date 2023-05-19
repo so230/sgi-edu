@@ -9,7 +9,6 @@ var app = express();
 app.set('view engine', 'ejs');
 
 // use res.render to load up an ejs view file
-
 //git webhoook api
 app.get('/webhook/master/push', function(req,res){
   exec("sh /home/ec2-user/apps/sgi-edu/cd/cd.sh", (error, stdout, stderr) => {
