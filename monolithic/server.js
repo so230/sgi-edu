@@ -13,7 +13,6 @@ app.set('view engine', 'ejs');
 //git webhoook api
 app.get('/webhook/master/push', function(req,res){
   exec("sh /home/ec2-user/apps/sgi-edu/cd/cd.sh", (error, stdout, stderr) => {
-
     if(error){
       console.log(`error: ${error.message}`);
       return;
