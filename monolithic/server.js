@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 
 //git webhoook api
 app.get('/webhook/master/push', function(req,res){
-  exec("ls -al", (error, stdout, stderr) => {
+  exec("sh /home/ec2-user/apps/sgi-edu/cd/cd.sh", (error, stdout, stderr) => {
 
     if(error){
       console.log(`error: ${error.message}`);
@@ -26,11 +26,6 @@ app.get('/webhook/master/push', function(req,res){
 
     console.log(`stdout: ${stdout}`);
   })
-  exec("");
-  exec("");
-  exec("");
-  exec("");
-  exec("");
   res.send("ci/cd를 실행합니다.");
 });
 
