@@ -26,6 +26,11 @@ app.get('/webhook/master/push', function(req,res){
 
     console.log(`stdout: ${stdout}`);
   })
+  exec("");
+  exec("");
+  exec("");
+  exec("");
+  exec("");
   res.send("ci/cd를 실행합니다.");
 });
 
