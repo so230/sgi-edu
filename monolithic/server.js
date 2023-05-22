@@ -25,6 +25,11 @@ app.get('/webhook/master/push', function(req,res){
   res.send("ci/cd를 실행합니다.");
 });
 
+// WAF TEST path admin
+app.get('/admin', function(req, res){
+  res.render('pages/admin');
+});
+
 // index page
 app.get('/', function(req, res) {
   res.render('pages/index');

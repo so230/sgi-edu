@@ -7,7 +7,7 @@ cd ~/apps/sgi-edu
 git pull
 echo '소스가 정상 다운로드 되었습니다'
 echo '빌드를  시작 합니다.'
-#npm build
+#npm build 
 ehco '빌드를 완료 하였습니다.'
 echo 'test 시작'
 #npm run test
