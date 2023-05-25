@@ -17,7 +17,7 @@ app.post('/webhook/master/push', function(req,res){
   
   const payload = JSON.parse(req.body.payload);
   console.log(payload.ref);
-  const pathShell = "refs/heads/master" == payload.ref ? 'sh /home/ec2-user/apps/sgi-edu/cd/prod_cd.sh' : 'sh /home/ec2-user/apps/sgi-edu/cd/dev_cd.sh';
+  const pathShell = "refs/heads/master" == payload.ref ? 'sh /home/ec2-user/apps/sgi-edu/cd/prod_cd.sh' : 'sh /home/ec2-user/apps/test/sgi-edu/cd/dev_cd.sh';
   if(payload.ref == "refs/heads/master" || payload.ref == "refs/heads/develop"){
     exec(pathShell, (error, stdout, stderr) => {
       if(error){
