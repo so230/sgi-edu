@@ -19,7 +19,7 @@ tar -cf sgi-edu.tar ./sgi-edu/*
 ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 rm /home/ubuntu/cd/sgi-edu.tar
 scp -i /home/ec2-user/keys/private_was.pem ~/apps/sgi-edu.tar ubuntu@10.0.3.225:/home/ubuntu/cd
 ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 tar -xf /home/ubuntu/cd/sgi-edu.tar
-ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 cp -rf /home/ubuntu/cd/sgi-edu/monolithic/* /home/ubuntu/apps/sgi-edu/monolithic/
+ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 cp -rf /home/ubuntu/sgi-edu/monolithic/* /home/ubuntu/apps/sgi-edu/monolithic/
 ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 pm2 restart server
 echo '배포 완료'
 
