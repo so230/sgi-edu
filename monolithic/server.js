@@ -11,18 +11,22 @@ app.set('view engine', 'ejs');
 // use res.render to load up an ejs view file
 //git webhoook api
 app.post('/webhook/master/push', function(req,res){
-  exec("sh /home/ec2-user/apps/sgi-edu/cd/cd.sh", (error, stdout, stderr) => {
-    if(error){
-      console.log(`error: ${error.message}`);
-      return;
-    }
-    if(stderr){
-      console.log(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-  })
-  res.send("ci/cd를 실행합니다.");
+  console.log(req.body);
+  const payload = req.body;
+  if(payload.ref == "refs/heads/master"){
+    exec("sh /home/ec2-user/apps/sgi-edu/cd/cd.sh", (error, stdout, stderr) => {
+      if(error){
+        console.log(`error: ${error.message}`);
+        return;
+      }
+      if(stderr){
+        console.log(`stderr: ${stderr}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+    })
+    res.send("ci/cd를 실행합니다."); 
+  }
 });
 
 // WAF TEST path admin
