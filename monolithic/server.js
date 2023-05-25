@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 //git webhoook api test
 app.post('/webhook/master/push', function(req,res){
   console.log(req.body);
-  const payload = req.body;
+  const payload = req.body.payload;
   if(payload.ref == "refs/heads/master"){
     exec("sh /home/ec2-user/apps/sgi-edu/cd/cd.sh", (error, stdout, stderr) => {
       if(error){
