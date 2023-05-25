@@ -4,7 +4,7 @@
 echo '소스 다운로드 시작'
 rm ~/apps/sgi-edu.tar
 cd ~/apps/sgi-edu
-git pull
+git pull --rebase
 echo '소스가 정상 다운로드 되었습니다'
 echo '빌드를  시작 합니다.'
 #npm build
