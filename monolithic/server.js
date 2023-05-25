@@ -12,13 +12,14 @@ app.use(express.urlencoded({ extended: true })); // support encoded bodies
 app.set('view engine', 'ejs');
 
 // use res.render to load up an ejs view file
-//git webhoook api auto
+//git webhoook api test
 app.post('/webhook/master/push', function(req,res){
   
   const payload = JSON.parse(req.body.payload);
   console.log(payload.ref);
-  if(payload.ref == "refs/heads/master"){
-    exec("sh /home/ec2-user/apps/sgi-edu/cd/cd.sh", (error, stdout, stderr) => {
+  const pathShell = "refs/heads/master" == payload.ref ? 'sh /home/ec2-user/apps/sgi-edu/cd/prod_cd.sh' : 'sh /home/ec2-user/apps/test/sgi-edu/cd/dev_cd.sh';
+  if(payload.ref == "refs/heads/master" || payload.ref == "refs/heads/develop"){
+    exec(pathShell, (error, stdout, stderr) => {
       if(error){
         console.log(`error: ${error.message}`);
         return;
