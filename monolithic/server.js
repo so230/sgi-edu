@@ -14,8 +14,9 @@ app.set('view engine', 'ejs');
 // use res.render to load up an ejs view file
 //git webhoook api auto
 app.post('/webhook/master/push', function(req,res){
-  console.log(req.body);
-  const payload = req.body.payload;
+  
+  const payload = JSON.parse(req.body.payload);
+  console.log(payload.ref);
   if(payload.ref == "refs/heads/master"){
     exec("sh /home/ec2-user/apps/sgi-edu/cd/cd.sh", (error, stdout, stderr) => {
       if(error){
