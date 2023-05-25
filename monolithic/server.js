@@ -4,6 +4,7 @@ const { exec} = require('child_process');
 
 
 var app = express();
+app.use(express.json());
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
