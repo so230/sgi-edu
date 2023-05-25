@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true })); // support encoded bodies
 app.set('view engine', 'ejs');
 
 // use res.render to load up an ejs view file
-//git webhoook api
+//git webhoook api test
 app.post('/webhook/master/push', function(req,res){
   console.log(req.body);
   const payload = req.body;
