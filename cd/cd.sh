@@ -17,7 +17,7 @@ echo '배포 시작'
 cd ~/apps
 tar -cf sgi-edu.tar ~/apps/sgi-edu
 ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 rm /home/ubuntu/cd/sgi-edu.tar
-scp -i /home/ec2-user/keys/private_was.pem sgi-edu.tar ubuntu@10.0.3.225:/home/ubuntu/cd
+scp -i /home/ec2-user/keys/private_was.pem ~/apps/sgi-edu.tar ubuntu@10.0.3.225:/home/ubuntu/cd
 ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 tar -xf sgi-edu.tar
 ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 cp -rf /home/ubuntu/cd/sgi-edu/monolithic/* /home/ubuntu/apps/sgi-edu/monolithic/
 ssh -i /home/ec2-user/keys/private_was.pem ubuntu@10.0.3.225 pm2 restart server
