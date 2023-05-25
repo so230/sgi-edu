@@ -10,7 +10,7 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 // use res.render to load up an ejs view file
-//git webhoook api dddd
+//git webhoook api
 app.post('/webhook/master/push', function(req,res){
   console.log(req.body);
   const payload = req.body;
