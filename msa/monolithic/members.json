@@ -1,0 +1,10 @@
+{
+    "members":[
+        {"id":1, "name":"김정임","company":"EY"},
+        {"id":2, "name":"이성준","company":"SGI 서울보증보험"},
+        {"id":2, "name":"김태규","company":"EY"},
+        {"id":2, "name":"송지은","company":"EY"},
+        {"id":2, "name":"이진희","company":"SGI 서울보증보험"},
+        {"id":2, "name":"박소원","company":"SGI 서울보증보험"}
+    ]
+}

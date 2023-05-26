@@ -20,7 +20,7 @@
             <a class="nav-link" href="/member">Member</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/company">Company</a>
+            <a class="nav-link" href="/company"><b>Company</b></a>
           </li>
         </ul>
       </nav>
@@ -28,13 +28,22 @@
 
 <main>
   <div class="jumbotron">
-    <h1>역량강화프로그램 ver 0.7 DEV</h1>
-    <p>안녕하세요 SGI 역량강화프로그램 샘플 프로그램 입니다</p>
-  </div>
+   
+    <% companys.forEach(function(company){%>
+        <p><%= company.name%></p>
+        <ul>
+          
+    <% members.filter(member => member.company == company.name).forEach(function(member){%>
+      <li><%= member.name%></li>
+    <% }) %>
+        </ul>
+
+    <% }) %>
+
 </main>
 
 <footer>
-    <p class="text-center text-muted">&copy; Copyright 2023 sso230@hotmail.com</p>
+  <p class="text-center text-muted">&copy; Copyright 2023 sso230@hotmail.com</p>
 </footer>
 
 </body>

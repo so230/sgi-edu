@@ -17,7 +17,7 @@
         <a class="navbar-brand" href="/">SGI-EDU-CLOUD-DEMO-WebApp</a>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/member">Member</a>
+            <a class="nav-link" href="/member"><b>Member</b></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/company">Company</a>
@@ -28,13 +28,16 @@
 
 <main>
   <div class="jumbotron">
-    <h1>역량강화프로그램 ver 0.7 DEV</h1>
-    <p>안녕하세요 SGI 역량강화프로그램 샘플 프로그램 입니다</p>
-  </div>
+   
+    <% members.forEach(function(member){%>
+        <li><%= member.name%> / <%= member.company%></li>
+        
+    <% }) %>
+
 </main>
 
 <footer>
-    <p class="text-center text-muted">&copy; Copyright 2023 sso230@hotmail.com</p>
+  <p class="text-center text-muted">&copy; Copyright 2023 sso230@hotmail.com</p>
 </footer>
 
 </body>
