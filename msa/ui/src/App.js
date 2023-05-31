@@ -42,16 +42,17 @@ function App(props) {
   const [query, setQuery] = useState('eks');
   const [search, setSearch] = useState('eks');
 
-  var url = `{backend-ingress ADDRESS}/contents/${search}`
+  var url = `http://localhost:8080/company`
+  // var url = `{backend-ingress ADDRESS}/contents/${search}`
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await axios(url);
-  //     setState(result.data);
-  //   };
-  //   fetchData();
-  //   // eslint-disable-next-line
-  // }, [search]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(url);
+      setState(result.data);
+    };
+    fetchData();
+    // eslint-disable-next-line
+  }, [search]);
   
   return (
     <div className={classes.root}>
@@ -77,8 +78,8 @@ function App(props) {
       
       <ul>
       {data.outcome.map( item => (
-        <li key={item.url}>
-          <a href={item.url}>{item.title}</a><br/>
+        <li key={item.id}>
+          <a href={item.id}>{item.name}</a><br/>
         </li>
       ))}
       </ul>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SGI-EDU-CLOUD-DEMO</title>
+    
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      body { padding-top:50px; }
+    </style>
+</head>
+<body class="container">
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">SGI-EDU-CLOUD-DEMO-WebApp</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/member">Member</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/company"><b>Company</b></a>
+          </li>
+        </ul>
+      </nav>
+</header>
+
+<main>
+  <div class="jumbotron">
+   
+    <% companys.forEach(function(company){%>
+        <p><%= company.name%></p>
+        <ul>
+          
+    <% members.filter(member => member.company == company.name).forEach(function(member){%>
+      <li><%= member.name%></li>
+    <% }) %>
+        </ul>
+
+    <% }) %>
+
+</main>
+
+<footer>
+  <p class="text-center text-muted">&copy; Copyright 2023 sso230@hotmail.com</p>
+</footer>
+
+</body>
+</html>
