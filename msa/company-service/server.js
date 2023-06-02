@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 
 
 // company page
-app.get('/list', function(req, res) {
+app.get('/company/list', function(req, res) {
     
   const companys = getCompanys();
   console.log(companys);
