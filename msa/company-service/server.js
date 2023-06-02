@@ -5,11 +5,7 @@ const cors = require('cors');
 
 var app = express();
 app.use(express.json());
-app.use(cors({
-  origin: ['http://localhost:3000'],
-  credentials: true,
-  optionsSuccessStatus: 200
-}));
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true })); // support encoded bodies
 
@@ -20,7 +16,7 @@ app.set('view engine', 'ejs');
 
 
 // company page
-app.get('/company', function(req, res) {
+app.get('/list', function(req, res) {
     
   const companys = getCompanys();
   console.log(companys);
