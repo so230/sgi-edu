@@ -38,16 +38,18 @@ const useStyles = makeStyles((theme) => ({
 function App(props) {
   const classes = useStyles();
   // const { sections } = props;
-  const [ data, setState ] = useState({outcome: []});
+  const [ data, setState ] = useState({companys: []});
   const [query, setQuery] = useState('eks');
   const [search, setSearch] = useState('eks');
 
-  var url = `http://localhost:8080/company`
+  // var url = `k8s-eksdemogroup-e0353f9ab7-579727737.ap-northeast-2.elb.amazonaws.com`
   // var url = `{backend-ingress ADDRESS}/contents/${search}`
+  var url = `localhost:8080`
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(url);
+      const result = await axios(`/company`);
+      console.log(result.data);
       setState(result.data);
     };
     fetchData();
@@ -77,7 +79,7 @@ function App(props) {
       <br/>
       
       <ul>
-      {data.outcome.map( item => (
+      {data.companys.map( item => (
         <li key={item.id}>
           <a href={item.id}>{item.name}</a><br/>
         </li>

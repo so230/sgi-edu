@@ -1,10 +1,15 @@
 var express = require('express');
 const fs = require('fs');
 const { exec} = require('child_process');
-
+const cors = require('cors');
 
 var app = express();
 app.use(express.json());
+app.use(cors({
+  origin: ['http://localhost:3000'],
+  credentials: true,
+  optionsSuccessStatus: 200
+}));
 
 app.use(express.urlencoded({ extended: true })); // support encoded bodies
 
