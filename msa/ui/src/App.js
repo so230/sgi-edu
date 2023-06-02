@@ -48,7 +48,7 @@ function App(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(`/company`);
+      const result = await axios(`/company/list`);
       console.log(result.data);
       setState(result.data);
     };
