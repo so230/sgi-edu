@@ -1,7 +1,7 @@
 var express = require('express');
 const fs = require('fs');
 const { exec} = require('child_process');
-
+require('dotenv').config();
 
 var app = express();
 app.use(express.json());
@@ -35,8 +35,8 @@ app.post('/webhook/master/push', function(req,res){
 });
 
 app.get('/getHost',function(req, res) {
-  const ipAddress = req.socket.remoteAddress;
-  res.send(ipAddress);
+  console.log(process.env.MY_NODE_NAME);
+  res.send(process.env.MY_NODE_NAME); 
 });
 
 // WAF TEST path admin
