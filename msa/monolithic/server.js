@@ -34,6 +34,11 @@ app.post('/webhook/master/push', function(req,res){
   }
 });
 
+app.get('/getHost',function(req, res) {
+  const ipAddress = req.socket.remoteAddress;
+  res.send(ipAddress);
+});
+
 // WAF TEST path admin
 app.get('/admin', function(req, res){
   res.render('pages/admin');
