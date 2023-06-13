@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sgi-edu-ui-service-deployment
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sgi-edu-ui-service
+  template:
+    metadata:
+      labels:
+        app: sgi-edu-ui-service
+    spec:
+      containers:
+        - name: sgi-edu-ui-service
+          image: 261243772911.dkr.ecr.ap-northeast-2.amazonaws.com/sgi-edu-ui-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

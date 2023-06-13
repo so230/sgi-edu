@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sgi-edu-company-service
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sgi-edu-company-service
+  template:
+    metadata:
+      labels:
+        app: sgi-edu-company-service
+    spec:
+      containers:
+        - name: sgi-edu-company-service
+          image: 261243772911.dkr.ecr.ap-northeast-2.amazonaws.com/sgi-edu-company-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
