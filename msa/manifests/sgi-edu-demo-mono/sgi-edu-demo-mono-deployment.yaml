@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sgi-edu-demo-mono-deployment
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sgi-edu-demo-mono
+  template:
+    metadata:
+      labels:
+        app: sgi-edu-demo-mono
+    spec:
+      containers:
+        - name: sgi-edu-demo-mono
+          image: 261243772911.dkr.ecr.ap-northeast-2.amazonaws.com/sgi-edu-demo-mono:061203
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 100m
+          env:
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP

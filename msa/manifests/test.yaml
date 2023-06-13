@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: ebs-volume
+          mountPath: /data
+      volumes:
+      - name: ebs-volume
+        persistentVolumeClaim:
+          claimName: pvc   
+      # nodeSelector:
+      #   az: a
+      # affinity:
+      #   nodeAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #         - matchExpressions:
+      #             - key: topology.kubernetes.io/zone
+      #               operator: In
+      #               values:
+      #                 - ap-northeast-2a 
+                      
+                      
+                      
