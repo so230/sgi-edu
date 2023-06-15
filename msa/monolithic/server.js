@@ -35,7 +35,7 @@ app.post('/webhook/master/push', function(req,res){
 });
 
 app.get('/getHost',function(req, res) {
-  console.log(process.env.MY_NODE_NAME);
+  console.log('podIP:',process.env.MY_NODE_NAME);
   res.send(process.env.MY_NODE_NAME); 
 });
 
