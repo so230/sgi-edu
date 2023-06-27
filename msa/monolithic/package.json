@@ -21,6 +21,13 @@
   },
   "homepage": "https://github.com/so230/sgi-edu#readme",
   "dependencies": {
+    "@opentelemetry/api": "^1.4.1",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.40.0",
+    "@opentelemetry/id-generator-aws-xray": "^1.1.2",
+    "@opentelemetry/instrumentation-aws-sdk": "^0.34.3",
+    "@opentelemetry/instrumentation-http": "^0.40.0",
+    "@opentelemetry/propagator-aws-xray": "^1.2.1",
+    "@opentelemetry/sdk-node": "^0.40.0",
     "child_process": "^1.0.2",
     "dotenv": "^16.1.4",
     "ejs": "^3.1.6",
