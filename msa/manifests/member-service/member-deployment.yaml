@@ -5,7 +5,7 @@ metadata:
   name: sgi-edu-member-service
   namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: sgi-edu-member-service
