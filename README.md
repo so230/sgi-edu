@@ -20,4 +20,5 @@
 
 ```sh
 node server.js
+gradle bootRun
 ```
