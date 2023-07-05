@@ -4,12 +4,32 @@ kind: Service
 metadata:
   name: sgi-edu-demo-mono-service
   annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: "/"
+    service.beta.kubernetes.io/aws-load-balancer-type: "external" #private subnet nlb 를 생성 하여 vpcLink를 통한 접근만 허용
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internal"
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0da82af9d3caf295c, subnet-0ba91c74860916df0, subnet-07df19987cf1a63b4
 spec:
   selector:
     app: sgi-edu-demo-mono
-  type: NodePort
+  type: LoadBalancer
   ports:
     - port: 8080 # 서비스가 생성할 포트  
       targetPort: 8080 # 서비스가 접근할 pod의 포트
       protocol: TCP
+
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: sgi-edu-demo-mono-service
+#   annotations:
+#     alb.ingress.kubernetes.io/healthcheck-path: "/"
+# spec:
+#   selector:
+#     app: sgi-edu-demo-mono
+#   type: NodePort
+#   ports:
+#     - port: 8080 # 서비스가 생성할 포트  
+#       targetPort: 8080 # 서비스가 접근할 pod의 포트
+#       protocol: TCP
