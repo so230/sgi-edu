@@ -21,3 +21,10 @@ spec:
                 name: "sgi-edu-member-service"
                 port:
                   number: 8080
+          - path: /mockaccount
+            pathType: Prefix
+            backend:
+              service:
+                name: "sgi-edu-member-service"
+                port:
+                  number: 8080
