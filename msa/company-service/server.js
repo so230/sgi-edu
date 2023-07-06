@@ -15,7 +15,7 @@ const {
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-const brokersEndpoint = 'b-3.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9098,b-1.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9098,b-2.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9098';
+const brokersEndpoint = 'b-2.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9092,b-1.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9092,b-3.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9092';
 // use res.render to load up an ejs view file
 const kafka = new Kafka({
   clientId: 'company',
