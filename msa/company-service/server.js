@@ -20,9 +20,10 @@ const brokersEndpoint = 'b-2.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws
 const kafka = new Kafka({
   clientId: 'company',
   brokers: brokersEndpoint.split(','),
+  ssl: true,
   sasl: {
     mechanism: 'aws',
-    authorizationIdentity: 'arn:aws:iam::261243772911:user/dev1', // UserId or RoleId
+    authorizationIdentity: 'aws:iam::261243772911:user/dev1', // UserId or RoleId
     accessKeyId: 'AKIATZU2XT7X6ELUKFK7',
     secretAccessKey: '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',
   },
@@ -31,10 +32,6 @@ const kafka = new Kafka({
 })
 
 const producer = kafka.producer()
-
-const initKafka = async () => {
-  await producer.connect()
-}
 
 // company page
 app.get('/company/list', function(req, res) {
@@ -49,14 +46,13 @@ app.post('/company/:id/:name', async function(req, res){
   console.log(id, name);
   
   res.json({'companys': updateCompanyName(id, name)});
+  await producer.connect();
   await producer.send({
     topic: 'customerTopic',
     messages: [
       {value:{ id, name }},
     ],
-  })
-
-
+  });
 });
 
 function getCompanys(){  
