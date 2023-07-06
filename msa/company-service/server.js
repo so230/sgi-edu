@@ -2,6 +2,7 @@ var express = require('express');
 const fs = require('fs');
 const { exec} = require('child_process');
 const cors = require('cors');
+const { Kafka } = require('kafkajs')
 
 var app = express();
 app.use(express.json());
@@ -13,30 +14,59 @@ app.use(express.urlencoded({ extended: true })); // support encoded bodies
 app.set('view engine', 'ejs');
 
 // use res.render to load up an ejs view file
+const kafka = new Kafka({
+  clientId: 'company',
+  brokers: ['b-3.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9092'
+  ,'b-1.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9092'
+  ,'b-2.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9092'],
+})
 
+const producer = kafka.producer()
+
+const initKafka = async () => {
+  await producer.connect()
+}
 
 // company page
 app.get('/company/list', function(req, res) {
     
   const companys = getCompanys();
   console.log(companys);
-  const members = getMembers();
-
-  // res.render('pages/company', {'companys': companys, 'members':members});
   res.json({'companys': companys});
 });
 
+app.post('/company/:id/:name', async function(req, res){
+  let { id, name } = req.params;
+  console.log(id, name);
+  
+  res.json({'companys': updateCompanyName(id, name)});
+  await producer.send({
+    topic: 'customerTopic',
+    messages: [
+      {value:{ id, name }},
+    ],
+  })
 
-function getMembers(){  
-  const jsonFile = fs.readFileSync('./members.json', 'utf8');
-  const jsonData = JSON.parse(jsonFile);
-  return jsonData.members;
-}
+
+});
 
 function getCompanys(){  
   const jsonFile = fs.readFileSync('./company.json', 'utf8');
   const jsonData = JSON.parse(jsonFile);
   return jsonData.companys;
+}
+
+function updateCompanyName(id, name){
+  const jsonFile = fs.readFileSync('./company.json', 'utf8');
+  const jsonData = JSON.parse(jsonFile);
+  
+  // jsonData.companys.map((n) => (n.id == id) ? name : n.name); 
+  jsonData.companys.map( n => n.id == id ? n.name = name : n); 
+  
+  console.log(jsonData);
+  const wFs = fs.writeFileSync('./company.json', JSON.stringify(jsonData));
+  return jsonData.companys;
+
 }
   
 app.listen(8080);
