@@ -64,7 +64,7 @@ function getCompany(id){
   const jsonFile = fs.readFileSync('./company.json', 'utf8');
   const jsonData = JSON.parse(jsonFile);
 
-  return jsonData.filter(
+  return jsonData.companys.find(
     function(data){ return data.id == id }
   );
 }
