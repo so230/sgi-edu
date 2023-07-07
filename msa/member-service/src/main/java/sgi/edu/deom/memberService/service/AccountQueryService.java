@@ -26,6 +26,14 @@ public class AccountQueryService {
     public Account updateCompany(Long accountId, String company) {
         Account account = accountRepository.findById(accountId).get();
         account.setCompany(company);
-        return accountRepository.save(account);
+        return accountRepository.save(account);        
+    }
+
+    public List<Account> updateComapnyAll(String orgName, String company){
+        List<Account> accountList = accountRepository.findByCompany(orgName);
+        for(Account account : accountList ){
+            account.setCompany(company);
+        }
+        return accountRepository.saveAll(accountList);
     }
 }
