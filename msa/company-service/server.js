@@ -21,7 +21,7 @@ const kafka = new Kafka({
   clientId: 'company',
   brokers: brokersEndpoint.split(','),
   sasl: {
-    mechanism: 'plain', // scram-sha-256 or scram-sha-512
+    mechanism: 'SYMMETRIC_DEFAULT', // scram-sha-256 or scram-sha-512
     username: 'alice',
     password: 'alice-secret'
   },
