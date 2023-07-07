@@ -20,6 +20,12 @@ const brokersEndpoint = 'b-2.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws
 const kafka = new Kafka({
   clientId: 'company',
   brokers: brokersEndpoint.split(','),
+  sasl: {
+    mechanism: 'plain', // scram-sha-256 or scram-sha-512
+    username: 'alice',
+    password: 'alice-secret'
+  },
+
   // ssl: true,
   // sasl: {
   //   mechanism: 'aws',
