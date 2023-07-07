@@ -1,6 +1,1 @@
-{
-    "companys":[
-        {"id":"1","name":"SGI 서울보증보험"},
-        {"id":"2","name":"EY"}
-    ]
-}
+{"companys":[{"id":"1","name":"SGI 서울보증보험"},{"id":"2","name":"EY"}]}
