@@ -1,6 +1,6 @@
 package sgi.edu.deom.memberService;
 
-import org.h2.util.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,11 @@ public class KafkaConsumer {
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(kafkaMessage);
         JSONObject jsonObj = (JSONObject) obj;
-        log.info(jsonObj.getFirst("id").toString());
-        log.info(jsonObj.getFirst("name").toString());
-        log.info(jsonObj.getFirst("orgName").toString());
+        log.info(jsonObj.get("id").toString());
+        log.info(jsonObj.get("name").toString());
+        log.info(jsonObj.get("orgName").toString());
         
-        accountQueryService.updateComapnyAll(jsonObj.getFirst("orgName").toString(), jsonObj.getFirst("name").toString());
+        accountQueryService.updateComapnyAll(jsonObj.get("orgName").toString(), jsonObj.get("name").toString());
 
     }
 
