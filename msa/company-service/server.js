@@ -15,17 +15,17 @@ const {
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-const brokersEndpoint = 'b-2.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9096,b-1.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9096,b-3.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9096';
+const brokersEndpoint = 'b-2.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9094,b-3.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9094,b-1.sgidemomsk.o9fr30.c4.kafka.ap-northeast-2.amazonaws.com:9094';
 // use res.render to load up an ejs view file
 const kafka = new Kafka({
   clientId: 'company',
   brokers: brokersEndpoint.split(','),
   ssl: true,
-  sasl: {
-    mechanism: 'SCRAM-SHA-512', // scram-sha-256 or scram-sha-512
-    username: 'alice',
-    password: 'alice-secret'
-  },
+  // sasl: {
+  //   mechanism: 'SCRAM-SHA-512', // scram-sha-256 or scram-sha-512
+  //   username: 'alice',
+  //   password: 'alice-secret'
+  // },
 
   // ssl: true,
   // sasl: {
