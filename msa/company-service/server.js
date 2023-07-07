@@ -55,7 +55,7 @@ app.post('/company/:id/:name', async function(req, res){
   await producer.send({
     topic: 'customerTopic',
     messages: [
-      {value:{ id, name }},
+      {value:JSON.stringify({ id, name })},
     ],
   });
 });
