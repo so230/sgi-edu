@@ -48,17 +48,26 @@ app.get('/company/list', function(req, res) {
 
 app.post('/company/:id/:name', async function(req, res){
   let { id, name } = req.params;
-  console.log(id, name);
+  let orgComapny = getCompany(id);
   
   res.json({'companys': updateCompanyName(id, name)});
   await producer.connect();
   await producer.send({
     topic: 'customerTopic',
     messages: [
-      {value:JSON.stringify({ id, name })},
+      {value:JSON.stringify({ id, name, orgName: orgComapny.name })},
     ],
   });
 });
+
+function getCompany(id){
+  const jsonFile = fs.readFileSync('./company.json', 'utf8');
+  const jsonData = JSON.parse(jsonFile);
+
+  return jsonData.filter(
+    function(data){ return data.id == id }
+  );
+}
 
 function getCompanys(){  
   const jsonFile = fs.readFileSync('./company.json', 'utf8');
