@@ -83,6 +83,16 @@ app.post('/company/:id/:name', async function(req, res){
       console.log({
         value: message.value.toString(),
       })
+
+      const command = message.split(':')[0];
+      const id = message.split(':')[1];
+
+      if(command == "commit"){
+        commitTxCompany(id)
+      }
+      else{
+        rollbackTxCompany(id);
+      }
     },
   })
 });
