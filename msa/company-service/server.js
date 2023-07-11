@@ -9,9 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(express.urlencoded({ extended: true })); // support encoded bodies
-const {
-  createMechanism,
-} = require("@jm18457/kafkajs-msk-iam-authentication-mechanism");
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -37,6 +35,7 @@ const kafka = new Kafka({
 })
 
 const producer = kafka.producer()
+const consumer = kafka.consumer({ groupId: 'resultCompanyGroupId' })
 
 // company page
 app.get('/company/rollback/:id', function(req, res) {
@@ -75,6 +74,17 @@ app.post('/company/:id/:name', async function(req, res){
       {value:JSON.stringify({ id, name, orgName: orgComapny.name })},
     ],
   });
+
+  await consumer.connect()
+  await consumer.subscribe({ topic: 'companyResult', fromBeginning: true })
+
+  await consumer.run({
+    eachMessage: async ({ topic, partition, message }) => {
+      console.log({
+        value: message.value.toString(),
+      })
+    },
+  })
 });
 
 function getCompany(id){
@@ -136,19 +146,7 @@ function commitTxCompany(id)
   updateCompanyName(id, null, "completed");
 }
   
-const consumer = kafka.consumer({ groupId: 'resultCompanyGroupId' })
-
-await consumer.connect()
-await consumer.subscribe({ topic: 'companyResult', fromBeginning: true })
-
-await consumer.run({
-  eachMessage: async ({ topic, partition, message }) => {
-    console.log({
-      value: message.value.toString(),
-    })
-  },
-})
 
 
-app.listen(8080);
+app.listen(8081);
 console.log('Server is listening on port 8080');
