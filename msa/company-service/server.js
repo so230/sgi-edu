@@ -84,8 +84,8 @@ app.post('/company/:id/:name', async function(req, res){
         value: message.value.toString(),
       })
 
-      const command = message.split(':')[0];
-      const id = message.split(':')[1];
+      const command = value.toString().split(':')[0];
+      const id = value.toString().split(':')[1];
 
       if(command == "commit"){
         commitTxCompany(id)
