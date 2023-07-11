@@ -35,9 +35,10 @@ public class KafkaConsumer {
         log.info(jsonObj.get("orgName").toString());
         try{
             accountQueryService.updateComapnyAll(jsonObj.get("orgName").toString(), jsonObj.get("name").toString());
+            kafkaMessageProducer.messageProducer().sendMessage(String.format("commit:%s",jsonObj.get("id").toString()));
         }
         catch(Exception ex){
-            kafkaMessageProducer.messageProducer().sendMessage(kafkaMessage);
+            kafkaMessageProducer.messageProducer().sendMessage(String.format("rollback:%s",jsonObj.get("id").toString()));
         }
         return;
     }
