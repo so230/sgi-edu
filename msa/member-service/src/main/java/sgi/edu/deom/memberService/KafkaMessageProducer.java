@@ -6,18 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class KafkaMessageProducer {
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
     @Bean
     public MessageProducer messageProducer() {
-        return new MessageProducer();
+        return new MessageProducer(kafkaTemplate);
     }
 
 	public static class MessageProducer {
-        @Autowired
+        
         private KafkaTemplate<String, String> kafkaTemplate;
+        public MessageProducer(KafkaTemplate<String, String> kafkaTemplate){
+            this.kafkaTemplate = kafkaTemplate;
+        }
 
         public void sendMessage(String message) {
 
