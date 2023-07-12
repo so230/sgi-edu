@@ -15,13 +15,15 @@ import sgi.edu.deom.memberService.service.AccountQueryService;
 public class KafkaConsumer {
 
     private final AccountQueryService accountQueryService;
+    private final KafkaMessageProducer kafkaMessageProducer;
 
     @Autowired
-    public KafkaConsumer(AccountQueryService accountQueryService) {
+    public KafkaConsumer(AccountQueryService accountQueryService, KafkaMessageProducer kafkaMessageProducer) {
         this.accountQueryService = accountQueryService;
+        this.kafkaMessageProducer = kafkaMessageProducer;
     }
     
-    @KafkaListener(topics = "customerTopic", groupId = "serviesConsumerGroupId")
+    @KafkaListener(topics = "companyUpdate", groupId = "updateCompanyGroupId")
     public void updateUserStarCnt(String kafkaMessage) throws ParseException {
         log.info("kafka Message : " + kafkaMessage);
 
@@ -31,9 +33,14 @@ public class KafkaConsumer {
         log.info(jsonObj.get("id").toString());
         log.info(jsonObj.get("name").toString());
         log.info(jsonObj.get("orgName").toString());
-        
-        accountQueryService.updateComapnyAll(jsonObj.get("orgName").toString(), jsonObj.get("name").toString());
-
+        try{
+            accountQueryService.updateComapnyAll(jsonObj.get("orgName").toString(), jsonObj.get("name").toString());
+            kafkaMessageProducer.messageProducer().sendMessage(String.format("commit:%s",jsonObj.get("id").toString()));
+        }
+        catch(Exception ex){
+            kafkaMessageProducer.messageProducer().sendMessage(String.format("rollback:%s",jsonObj.get("id").toString()));
+        }
+        return;
     }
 
 }

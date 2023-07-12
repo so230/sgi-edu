@@ -21,11 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class KafkaConsumerConfig {
  
-    private Environment env;
     
     @Autowired
     KafkaConsumerConfig(Environment env) {
-        this.env = env;
         log.info(env.getProperty("bootstrap.servers"));
     }
     
