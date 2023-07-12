@@ -8,16 +8,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
 
-      - name: Check Node v
-        run: gradle -v
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-      - name: build member service
-        run: |
-          gradle clean
-          gradle build
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
