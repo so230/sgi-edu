@@ -34,6 +34,11 @@ public class AccountQueryController {
         return accountQueryService.getAccounts();
     }
 
+    @GetMapping("/check")
+    public String getCheck() {
+        return "07131630";
+    }
+
     @PostMapping("/{accountId}/{company}")
     public Account updateCompany(@PathVariable(value = "accountId") Long accountId, @PathVariable(value = "company") String company){
         return accountQueryService.updateCompany(accountId, company);
