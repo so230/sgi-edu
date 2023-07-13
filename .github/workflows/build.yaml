@@ -77,6 +77,8 @@ jobs:
       - name: Commit files
         run: |
           cd ../../k8s-manifest-repo
+          git config --global user.email "sso230@hotmail.com"
+          git config --global user.name "sso230"
           git commit -am "Update image tag"
           git push -u origin main
 
