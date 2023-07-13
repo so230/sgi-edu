@@ -70,7 +70,7 @@ jobs:
           echo ${{ steps.login-ecr.outputs.registry }}
           echo ${{ steps.image-info.outputs.ecr_repository }}
           echo ${{ steps.image-info.outputs.image_tag }}
-          cd k8s-manifest-repo/overlays/dev/
+          cd ../../k8s-manifest-repo/overlays/dev/
           kustomize edit set image ${{ steps.login-ecr.outputs.registry}}/${{ steps.image-info.outputs.ecr_repository }}=${{ steps.login-ecr.outputs.registry}}/${{ steps.image-info.outputs.ecr_repository }}:${{ steps.image-info.outputs.image_tag }}
           cat kustomization.yaml
 
