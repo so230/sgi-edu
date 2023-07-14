@@ -5,7 +5,7 @@
 ### 모놀리틱 아키텍처
 
 - monolithic 폴더
-- nodejs + express 의 전톡적인 형태
+- nodejs + express 의 전통적인 형태
 - 회사, 조직 두개의 도메인으로 분리
 
 ### MSA 아키텍처
